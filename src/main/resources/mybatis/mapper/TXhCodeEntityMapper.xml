@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zz.amqp1.dao.repository.TXhCodeRepository">
+
+    <resultMap id="TXhCodeEntity" type="com.zz.amqp1.dao.entity.TXhCodeEntity" >
+        <result column="id" property="id" />
+        <result column="tel_code" property="telCode" />
+        <result column="xh_code" property="xhCode" />
+        <result column="count" property="count" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`,
+        `tel_code`,
+        `xh_code`,
+        `count`
+    </sql>
+
+    <select id="load" parameterType="java.util.Map" resultMap="TXhCodeEntity">
+        SELECT <include refid="Base_Column_List" />
+        FROM t_xh_code
+        WHERE `id` = #{id}
+    </select>
+
+    <select id="pageList" parameterType="java.util.Map" resultMap="TXhCodeEntity">
+        SELECT <include refid="Base_Column_List" />
+        FROM t_xh_code
+        LIMIT #{offset}, #{pagesize}
+    </select>
+
+    <select id="pageListCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(1)
+        FROM t_xh_code
+    </select>
+
+</mapper>

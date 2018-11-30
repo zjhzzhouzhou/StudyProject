@@ -1,0 +1,28 @@
+
+
+spring:
+  rabbitmq:
+     host: 127.0.0.1
+     port: 5672
+     username: guest
+     password: guest
+  datasource:
+     url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+     username: root
+     password: 123456
+  profiles:
+    active: redis
+
+#mybatis配置
+mybatis-plus:
+  mapper-locations: classpath*:mybatis/mapper/*.xml
+#  config-location: classpath:mybatis-config.xml
+
+
+# 测试mq
+mq.exchange.queue: zz.queue2
+mq.exchange.exchange: zz.exchange2
+mq.exchange.routekey: zz.haha2
+
+# 测试userId
+#userId: 123测试
