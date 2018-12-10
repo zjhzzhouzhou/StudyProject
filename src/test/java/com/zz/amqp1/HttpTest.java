@@ -25,8 +25,6 @@ public class HttpTest {
     public void test1(){
         String url ="http://127.0.01:8080/sendstr";
         String msg = restTemplate.getForObject(url, String.class);
-
-
         System.out.println("----------------------------- \n -" + msg);
     }
 
