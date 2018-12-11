@@ -1,5 +1,4 @@
 
-
 spring:
   rabbitmq:
      host: 127.0.0.1
@@ -24,5 +23,7 @@ mq.exchange.queue: zz.queue2
 mq.exchange.exchange: zz.exchange2
 mq.exchange.routekey: zz.haha2
 
+#系统环境
+env: dev
 # 测试userId
 #userId: 123测试
