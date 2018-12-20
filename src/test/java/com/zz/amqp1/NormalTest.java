@@ -2,6 +2,7 @@ package com.zz.amqp1;
 
 import com.zz.amqp1.bean.Student;
 import com.zz.amqp1.utils.ValidateUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Lists;
 import org.junit.Test;
 
@@ -151,15 +152,25 @@ public class NormalTest {
     @Test
     public void testList(){
         List<Integer> list = Lists.newArrayList(1,56,1,85,56,16,1,3,84,1,65,111);
-        List<Integer> collect = list.stream().filter(i -> i > 30).collect(Collectors.toList());
+        List<Integer> collect = list.stream().filter(i -> (i > 30)&&(i<80)).collect(Collectors.toList());
         System.out.println(collect);
     }
 
     @Test
     public void test41789204(){
-        String str = "12345678901234567890";
-        String substring = str.substring(0, 18);
+        String str = "31310000425202783F";
+        String substring = str.substring(2, 8);
         System.out.println(substring);
+    }
+
+    @Test
+    public void testNull(){
+        System.out.println(StringUtils.equals(null,null));
+    }
+
+    @Test
+    public void test1651616(){
+        System.out.println(5/2);
     }
 
 
