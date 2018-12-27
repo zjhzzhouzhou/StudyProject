@@ -6,7 +6,11 @@
     <groupId>com.zz</groupId>
     <artifactId>amqp1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>common</module>
+        <module>study-provider</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>amqp1</name>
     <description>Demo project for Spring Boot</description>
@@ -23,6 +27,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <aspectj.version>1.9.1</aspectj.version>
+        <lombok.version>1.16.22</lombok.version>
     </properties>
 
     <dependencies>
@@ -52,6 +57,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>

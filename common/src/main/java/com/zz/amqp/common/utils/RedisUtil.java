@@ -1,4 +1,4 @@
-package com.zz.amqp1.utils;
+package com.zz.amqp.common.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -131,7 +131,6 @@ public class RedisUtil {
     /**
      * 递增
      * @param key 键
-
      * @return
      */
     public long incr(String key, long delta){
@@ -144,7 +143,6 @@ public class RedisUtil {
     /**
      * 递减
      * @param key 键
-
      * @return
      */
     public long decr(String key, long delta){
@@ -432,7 +430,6 @@ public class RedisUtil {
      * 将list放入缓存
      * @param key 键
      * @param value 值
-
      * @return
      */
     public boolean lSet(String key, Object value) {

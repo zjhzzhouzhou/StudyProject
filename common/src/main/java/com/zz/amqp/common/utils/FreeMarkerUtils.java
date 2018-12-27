@@ -1,4 +1,4 @@
-package com.zz.amqp1.utils;
+package com.zz.amqp.common.utils;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;

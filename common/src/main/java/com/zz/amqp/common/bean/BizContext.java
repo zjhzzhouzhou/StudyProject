@@ -1,6 +1,6 @@
-package com.zz.amqp1.bean.common;
+package com.zz.amqp.common.bean;
 
-import com.zz.amqp1.bean.Student;
+import com.zz.amqp.common.model.Student;
 import lombok.Data;
 
 /**
@@ -15,5 +15,4 @@ public class BizContext {
     private Student student;
 
     private String systemEnv;
-
 }

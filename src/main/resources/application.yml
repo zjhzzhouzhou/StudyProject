@@ -1,14 +1,14 @@
 
 spring:
   rabbitmq:
-     host: 127.0.0.1
+     host: 192.168.2.225
      port: 5672
-     username: guest
-     password: guest
+     username: shuige
+     password: SHUIge@123.
   datasource:
      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
      username: root
-     password: 123456
+     password: root
   profiles:
     active: redis
 

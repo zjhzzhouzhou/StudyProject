@@ -1,4 +1,4 @@
-package com.zz.amqp1.utils;
+package com.zz.amqp.common.utils;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;

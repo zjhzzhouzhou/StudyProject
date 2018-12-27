@@ -1,4 +1,4 @@
-package com.zz.amqp1.common.redislock;
+package com.zz.amqp1.utils.redislock;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -36,7 +36,7 @@ public class RedisLockAspect {
     private CommonRedisHelper commonRedisHelper;
 
 
-    @Pointcut("@annotation(com.zz.amqp1.common.redislock.RedisLock)")
+    @Pointcut("@annotation(RedisLock)")
     public void redisLockAspect() {
     }
 
