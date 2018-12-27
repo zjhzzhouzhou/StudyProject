@@ -61,6 +61,7 @@ public class ZDispatchServlet extends HttpServlet {
         try {
             doDispatch(req, resp);
         } catch (Exception e) {
+            e.printStackTrace();
             resp.getWriter().write("500 :" + e.getMessage());
         }
     }
@@ -79,7 +80,8 @@ public class ZDispatchServlet extends HttpServlet {
         }
 
         Method method = handlerMapping.get(url);
-
+        Object o = this.ioc.get(toFirstCase(method.getDeclaringClass().getSimpleName()));
+        method.invoke(o, req, resp, req.getParameter("name"));
 
 
     }
@@ -201,7 +203,7 @@ public class ZDispatchServlet extends HttpServlet {
     }
 
     private void doScanner(String scanPackage) {
-        String s =  scanPackage.replaceAll("\\.", "/");
+        String s = scanPackage.replaceAll("\\.", "/");
         URL url = this.getClass().getClassLoader().getResource(s);
         File root = new File(url.getFile());
         File[] files = root.listFiles();
