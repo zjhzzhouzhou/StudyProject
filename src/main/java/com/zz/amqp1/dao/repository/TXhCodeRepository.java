@@ -5,6 +5,7 @@ import com.zz.amqp1.dao.entity.TXhCodeEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+
 @Mapper
 public interface TXhCodeRepository extends BaseMapper<TXhCodeEntity> {
 
