@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class NormalTest {
 
     @Test
-    public void test33(){
+    public void test33() {
         String str = "330104";
         System.out.println(ValidateUtil.isValidInt(str));
     }
@@ -45,7 +45,7 @@ public class NormalTest {
     @Test
     public void test11() {
         String str = "91310105132218087U";
-        System.out.println(str.substring(2,8));
+        System.out.println(str.substring(2, 8));
     }
 
     @Test
@@ -61,7 +61,7 @@ public class NormalTest {
     @Test
     public void test13() {
         long num1 = 123l;
-        System.out.println((num1 + 1)+"");
+        System.out.println((num1 + 1) + "");
     }
 
     @Test
@@ -73,9 +73,9 @@ public class NormalTest {
     public void test03() {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3);
         for (int i = 0; i < 30; i++) {
-            scheduledExecutorService.schedule(()-> {
+            scheduledExecutorService.schedule(() -> {
                 System.out.println("娃哈哈");
-                    return null;
+                return null;
             }, 3, TimeUnit.SECONDS);
         }
         scheduledExecutorService.shutdown();
@@ -90,7 +90,7 @@ public class NormalTest {
     }
 
     @Test
-    public void test055(){
+    public void test055() {
         String str = "String";
         char[] chars = str.toCharArray();
         chars[0] += 32;
@@ -98,16 +98,16 @@ public class NormalTest {
     }
 
     @Test
-    public void test051(){
+    public void test051() {
         String str = "/String///testtest.json";
 
-        System.out.println(str.replaceAll("/+","/"));
+        System.out.println(str.replaceAll("/+", "/"));
     }
 
     @Test
     public void test05() {
         ExecutorService pool = Executors.newCachedThreadPool();
-        for ( int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             pool.execute(() -> {
                 System.out.println("执行线程");
                 printNum();
@@ -117,10 +117,10 @@ public class NormalTest {
     }
 
     @Test
-    public void test06() throws  Throwable{
+    public void test06() throws Throwable {
         System.out.println("开始了");
         long a = 0;
-        if (a == 0){
+        if (a == 0) {
             a = 3000;
         }
         Thread.sleep(a);
@@ -136,41 +136,41 @@ public class NormalTest {
     }
 
     @Test
-    public void testString(){
+    public void testString() {
         String value = "organizationName";
         String method = "get" + value.substring(0, 1).toUpperCase() + value.substring(1);
         System.out.println(method);
     }
 
     @Test
-    public void testCompare(){
-        List<String> list = Lists.newArrayList("12","13","11","22","21","31","41");
-        Collections.sort(list, (String s1, String s2) ->(s1.compareTo(s2)));
+    public void testCompare() {
+        List<String> list = Lists.newArrayList("12", "13", "11", "22", "21", "31", "41");
+        Collections.sort(list, (String s1, String s2) -> (s1.compareTo(s2)));
         System.out.println(list);
     }
 
     @Test
-    public void testList(){
-        List<Integer> list = Lists.newArrayList(1,56,1,85,56,16,1,3,84,1,65,111);
-        List<Integer> collect = list.stream().filter(i -> (i > 30)&&(i<80)).collect(Collectors.toList());
+    public void testList() {
+        List<Integer> list = Lists.newArrayList(1, 56, 1, 85, 56, 16, 1, 3, 84, 1, 65, 111);
+        List<Integer> collect = list.stream().filter(i -> (i > 30) && (i < 80)).collect(Collectors.toList());
         System.out.println(collect);
     }
 
     @Test
-    public void test41789204(){
+    public void test41789204() {
         String str = "31310000425202783F";
         String substring = str.substring(2, 8);
         System.out.println(substring);
     }
 
     @Test
-    public void testNull(){
-        System.out.println(StringUtils.equals(null,null));
+    public void testNull() {
+        System.out.println(StringUtils.equals(null, null));
     }
 
     @Test
-    public void test1651616(){
-        System.out.println(5/2);
+    public void test1651616() {
+        System.out.println(3 | 8);
     }
 
 
