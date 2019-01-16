@@ -46,6 +46,7 @@ public class NormalTest {
     public void test11() {
         String str = "91310105132218087U";
         System.out.println(str.substring(2, 8));
+        System.out.println(str.substring(2));
     }
 
     @Test

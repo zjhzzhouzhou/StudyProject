@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadPoolTest {
 
-    private static final int count = 14;
+    private static final int count = 20;
 
     @Test
     public void tsetSimpleThreadPool() throws Exception {
