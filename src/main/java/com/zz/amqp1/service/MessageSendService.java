@@ -32,6 +32,7 @@ public class MessageSendService {
 
     @Autowired
     private AmqpTemplate amqpTemplate;
+
     @Autowired
     private AmqpAdmin amqpAdmin;
 
