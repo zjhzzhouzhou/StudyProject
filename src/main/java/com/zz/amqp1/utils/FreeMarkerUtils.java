@@ -29,7 +29,7 @@ public class FreeMarkerUtils {
                 "src\\main\\resources\\template"));
     }
 
-    public  void process(FreeMarkerUtils hf) throws Exception {
+    public void process(FreeMarkerUtils hf) throws Exception {
 
         Map root = new HashMap();
 

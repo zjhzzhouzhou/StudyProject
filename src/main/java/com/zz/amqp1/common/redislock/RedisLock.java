@@ -1,4 +1,4 @@
-package com.zz.amqp1.utils.redislock;
+package com.zz.amqp1.common.redislock;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

@@ -1,4 +1,4 @@
-package com.zz.amqp1.utils.redislock;
+package com.zz.amqp1.common.redislock;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisCallback;

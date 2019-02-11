@@ -97,10 +97,10 @@ public class MybatisCodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass("com.zz.amqp.common.model.BaseEntity");
+        strategy.setSuperEntityClass("com.zz.amqp1.common.BaseEntity");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
-        strategy.setSuperControllerClass("com.zz.amqp.common.BaseController");
+        strategy.setSuperControllerClass("com.zz.amqp1.common.BaseController");
         strategy.setInclude(scanner("表名"));
         strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);

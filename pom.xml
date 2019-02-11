@@ -23,7 +23,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <aspectj.version>1.9.1</aspectj.version>
-        <lombok.version>1.16.22</lombok.version>
     </properties>
 
     <dependencies>
@@ -53,7 +52,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>

@@ -1,4 +1,4 @@
-package com.zz.amqp.common.model;
+package com.zz.amqp1.common;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
 package com.zz.amqp1.service;
 
-import com.zz.amqp1.utils.redislock.RedisLock;
+import com.zz.amqp1.common.redislock.RedisLock;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
