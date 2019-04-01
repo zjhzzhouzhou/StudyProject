@@ -1,5 +1,7 @@
 package com.zz.amqp1.controller;
 
+import com.zz.amqp1.service.SchedulingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,15 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class JessicaController {
 
+    @Autowired
+    private SchedulingService schedulingService;
 
-    @RequestMapping(value = "/hello/Jessica", method = RequestMethod.GET)
-    public String testHello() {
-        return "爱你。Jessica";
-    }
 
     @RequestMapping(value = "/hello/Neal", method = RequestMethod.GET)
     public String testHelloNeal() {
         return "hello。Neal";
     }
+
+    @RequestMapping(value = "/hello/dd", method = RequestMethod.GET)
+    public void testHello() {
+         schedulingService.hello();
+    }
+
 
 }

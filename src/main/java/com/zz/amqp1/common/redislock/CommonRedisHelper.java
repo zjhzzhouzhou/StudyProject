@@ -49,8 +49,8 @@ public class CommonRedisHelper {
      * @param track
      * @param sector
      */
-    public void delete(String track, String sector) {
-        redisTemplate.delete(track + sector);
+    public boolean delete(String track, String sector) {
+       return redisTemplate.delete(track + sector);
     }
 
     /**
@@ -105,8 +105,8 @@ public class CommonRedisHelper {
      *
      * @param key
      */
-    public void delete(String key) {
-        redisTemplate.delete(key);
+    public boolean delete(String key) {
+        return redisTemplate.delete(key);
     }
 
 }

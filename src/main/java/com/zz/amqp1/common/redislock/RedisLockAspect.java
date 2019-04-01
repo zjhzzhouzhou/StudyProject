@@ -52,6 +52,7 @@ public class RedisLockAspect {
                 throw new RuntimeException("分布式锁执行发生异常" + throwable.getMessage(), throwable);
             } finally {
                 // 删除锁
+                delLock(proceeding);
             }
         } else {
             log.info("其他系统正在执行此项任务");
@@ -99,11 +100,11 @@ public class RedisLockAspect {
      *
      * @param proceeding
      */
-    private void delLock(ProceedingJoinPoint proceeding) {
+    private boolean delLock(ProceedingJoinPoint proceeding) {
         Map<String, Object> annotationArgs = this.getAnnotationArgs(proceeding);
         String lockPrefix = (String) annotationArgs.get(LOCK_PRE_FIX);
         String key = (String) annotationArgs.get(LOCK_KEY);
-        commonRedisHelper.delete(lockPrefix, key);
+        return commonRedisHelper.delete(lockPrefix, key);
     }
 
     /**
