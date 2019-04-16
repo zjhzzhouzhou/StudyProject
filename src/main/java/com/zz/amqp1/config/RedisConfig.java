@@ -13,13 +13,13 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * Date: 2018-11-29
  * Time: 4:40 PM
  */
-@Configuration
+//@Configuration
 public class RedisConfig {
 
     /**
      * RedisTemplate
      */
-    @Bean
+    //@Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         //如果不配置Serializer，那么存储的时候缺省使用String，如果用User类型存储，那么会提示错误User can't cast to String！

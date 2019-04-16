@@ -90,6 +90,17 @@ public class RedisUtil {
         return key==null?null:redisTemplate.opsForValue().get(key);
     }
 
+
+    /**
+     * 普通缓存获取
+     * @param key 键
+     * @return 值
+     */
+    public <T> T get(String key,Class<T> clazz){
+        Object o = key == null ? null : redisTemplate.opsForValue().get(key);
+        return (T)o;
+    }
+
     /**
      * 普通缓存放入
      * @param key 键
