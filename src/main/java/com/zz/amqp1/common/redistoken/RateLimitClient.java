@@ -1,7 +1,6 @@
 package com.zz.amqp1.common.redistoken;
 
 
-import com.google.common.util.concurrent.RateLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisCallback;
@@ -21,7 +20,6 @@ import java.util.Collections;
  *   2.1 获取 token 批量(立即返回)
  *   3.删除 token
  *   4.延时获取 token(必须获得,设置超时时间) 开发中
-
  * </p>
  * version: 1.0.0
  * User: zhouzhou

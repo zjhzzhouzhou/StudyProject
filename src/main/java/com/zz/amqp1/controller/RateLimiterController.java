@@ -27,8 +27,8 @@ public class RateLimiterController {
     @ResponseBody
     public String getToken() {
         //ratelimit:skynet
-        Token token = rateLimitClient.tryAcquire("skynet");
-        if (token.isSuccess()) {
+        Boolean token = rateLimitClient.tryAcquire("skynet");
+        if (token) {
             return "success";
         } else {
             return "failed";
