@@ -9,7 +9,7 @@ spring:
      username: root
      password: 123456
   profiles:
-    active: redis
+    active: redis,mq,redisson,com
 
 #mybatis配置
 mybatis-plus:

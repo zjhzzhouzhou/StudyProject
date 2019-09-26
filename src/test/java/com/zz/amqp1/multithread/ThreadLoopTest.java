@@ -65,12 +65,8 @@ public class ThreadLoopTest {
                 MissionUtils.mianMission();
                 flag = true;
                 lock.notify();
-
-
             }
-
         }
-
     }
 
 
