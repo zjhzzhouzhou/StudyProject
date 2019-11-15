@@ -18,4 +18,5 @@ public class LambdaTest {
         Student student = aNew.get();
         System.out.println(student);
     }
+
 }

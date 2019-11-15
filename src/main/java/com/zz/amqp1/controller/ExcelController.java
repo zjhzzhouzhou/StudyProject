@@ -29,9 +29,7 @@ public class ExcelController {
      * @param request
      *            request
      */
-    @RequestMapping(
-
-            produces = MediaType.APPLICATION_OCTET_STREAM_VALUE, path = "/excelDemo")
+    @RequestMapping(produces = MediaType.APPLICATION_OCTET_STREAM_VALUE, path = "/excelDemo")
     public void excelExportDemo(HttpServletResponse response,
                                 HttpServletRequest request) {
         ExcelExportUtil excelUtil = new ExcelExportUtil(response, "demo表",

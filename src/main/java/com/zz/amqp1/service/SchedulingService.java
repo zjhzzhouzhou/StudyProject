@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Description:
+ * Description:这个是spring自带的SpringTask无法满足集群， 舍弃
  * User: zhouzhou
  * Date: 2018-08-28
  * Time: 16:50
