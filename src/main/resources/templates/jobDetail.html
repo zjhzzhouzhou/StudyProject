@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>任务详情查看</title>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <script th:src="@{/layui/layui.js}"></script>
+</head>
+
+<body>
+   <form class="layui-form"  th:action="@{/edit}" th:object="${job}"  method="post">
+       <input type="hidden" name="id" th:value="*{id}" />
+        <div class="layui-form-item" style="margin-top: 20px;">
+            <label class="layui-form-label">任务名称：</label>
+            <div class="layui-input-block">
+                <input type="text" name="jobName" id="jobName"  th:value="*{jobName}" style="width: 400px;"  class="layui-input"  disabled="true" >
+            </div>
+        </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">任务组别：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobGroup" id="jobGroup"  th:value="*{jobGroup}" style="width: 400px;" class="layui-input" disabled="true">
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">Cron表达式：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobCron" id="jobCron"  th:value="*{jobCron}" style="width: 400px;" class="layui-input" disabled="true">
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">类路径：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobClassPath" id="jobClassPath"  th:value="*{jobClassPath}" style="width: 400px;" class="layui-input" disabled="true">
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">任务状态：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobStatus" id="jobStatus"  th:value="*{jobStatus}" style="width: 400px;" class="layui-input" disabled="true">
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">任务描述：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobDescribe" id="jobDescribe"  th:value="*{jobDescribe}" style="width: 400px;" class="layui-input" disabled="true">
+           </div>
+       </div>
+    </form>
+
+</body>
+</html>

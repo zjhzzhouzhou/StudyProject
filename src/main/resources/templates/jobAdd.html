@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>新增任务</title>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/jquery-3.3.1/jquery-3.3.1.js}"></script>
+</head>
+
+<body>
+   <form class="layui-form"  th:action="@{/edit}" th:object="${job}" id="userFrom"  method="post">
+
+        <div class="layui-form-item" style="margin-top: 20px;">
+            <label class="layui-form-label">任务名称（英文）：</label>
+            <div class="layui-input-block">
+                <input type="text" name="jobName" id="jobName"  style="width: 400px;"   placeholder="请输入任务名称（英文）"  class="layui-input">
+            </div>
+        </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">任务组别（英文）：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobGroup" id="jobGroup"  style="width: 400px;"  placeholder="请输入任务组别（英文）"  class="layui-input">
+           </div>
+       </div>
+
+       <div class="layui-form-item">
+           <label class="layui-form-label">Cron表达式：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobCron" id="jobCron"  style="width: 400px;"  placeholder="请输入Cron表达式"  class="layui-input">
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">类路径：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobClassPath" id="jobClassPath"  style="width: 400px;"  placeholder="请输入类路径"  class="layui-input">
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">任务描述：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobDescribe" id="jobDescribe"  style="width: 400px;"  placeholder="请输入任务描述"  class="layui-input">
+           </div>
+       </div>
+
+       <div class="layui-form-item">
+           <div class="layui-input-block">
+               <button type="button" class="layui-btn"  th:onclick="'javascript:save()'">确认</button>
+               <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+           </div>
+       </div>
+    </form>
+
+</body>
+
+<script>
+
+    function save(){
+       var jobName = $("#jobName").val();
+       var jobGroup = $("#jobGroup").val();
+       var jobCron = $("#jobCron").val();
+       var jobClassPath = $("#jobClassPath").val();
+       var jobDescribe = $("#jobDescribe").val();
+
+        if(jobName.trim()==""){
+            parent.layer.msg("请输入任务名称");
+            return;
+        }
+        if(jobGroup.trim()==""){
+            parent.layer.msg("请输入任务组别");
+            return;
+        }
+        if(jobCron.trim()==""){
+            parent.layer.msg("请输入Cron表达式");
+            return;
+        }
+        if(jobClassPath.trim()==""){
+            parent.layer.msg("请输入任务类路径");
+            return;
+        }
+        if(jobDescribe.trim()==""){
+            parent.layer.msg("请输入任务描述");
+            return;
+        }
+
+        $.ajax({
+            url: "/job/addJob",
+            type: "POST",
+            data:{"jobName":jobName,"jobGroup":jobGroup,"jobCron":jobCron,"jobClassPath":jobClassPath,"jobDescribe":jobDescribe},
+            dataType: "json",
+            success: function(data){
+                if(data==1){
+                    var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                    parent.layer.close(index);  // 关闭layer
+                    parent.layer.msg("新增任务成功", {icon: 6});
+                    parent.location.reload();
+                }else{
+                    parent.layer.msg("新增任务失败", {icon: 5});
+                }
+            }
+        });
+    }
+
+</script>
+</html>

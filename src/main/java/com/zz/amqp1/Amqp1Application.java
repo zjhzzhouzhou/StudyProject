@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 自动配置了哪些:
@@ -19,11 +18,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @EnableRabbit // 开启基于注解的rabbitMq
 @EnableAsync // 开启异步任务
-@EnableScheduling // 开启定时任务
+//@EnableScheduling // 开启定时任务,弃用，改用quartz
 @SpringBootApplication
 @ComponentScan("com.zz")
 @EnableAspectJAutoProxy(proxyTargetClass=true)
-@MapperScan("mybatis/mapper")
+@MapperScan("com.zz.amqp1.dao.repository")
 public class Amqp1Application {
 
     public static void main(String[] args) {

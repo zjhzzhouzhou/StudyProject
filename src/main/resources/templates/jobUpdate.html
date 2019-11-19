@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>任务更新</title>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/jquery-3.3.1/jquery-3.3.1.js}"></script>
+</head>
+
+<body>
+   <form class="layui-form"  th:action="@{/edit}" th:object="${job}" id="studentFrom"  method="post">
+       <input type="hidden" name="id" id="id" th:value="*{id}" />
+       <input type="hidden" name="id" th:value="*{id}" />
+       <div class="layui-form-item" style="margin-top: 20px;">
+           <label class="layui-form-label">任务名称：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobName" id="jobName"  th:value="*{jobName}" style="width: 400px;"  class="layui-input"  >
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">任务组别：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobGroup" id="jobGroup"  th:value="*{jobGroup}" style="width: 400px;" class="layui-input" >
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">Cron表达式：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobCron" id="jobCron"  th:value="*{jobCron}" style="width: 400px;" class="layui-input" >
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">类路径：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobClassPath" id="jobClassPath"  th:value="*{jobClassPath}" style="width: 400px;" class="layui-input" >
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">任务状态：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobStatus" id="jobStatus"  th:value="*{jobStatus}" style="width: 400px;" class="layui-input" disabled="true">
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <label class="layui-form-label">任务描述：</label>
+           <div class="layui-input-block">
+               <input type="text" name="jobDescribe" id="jobDescribe"  th:value="*{jobDescribe}" style="width: 400px;" class="layui-input" >
+           </div>
+       </div>
+       <div class="layui-form-item">
+           <div class="layui-input-block">
+               <button type="button" class="layui-btn"  th:onclick="'javascript:save()'">确认</button>
+               <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+           </div>
+       </div>
+    </form>
+
+</body>
+
+<script>
+
+    function save(){
+        var id = $("#id").val();
+        var jobName = $("#jobName").val();
+        var jobGroup = $("#jobGroup").val();
+        var jobCron = $("#jobCron").val();
+        var jobClassPath = $("#jobClassPath").val();
+        var jobDescribe = $("#jobDescribe").val();
+
+        $.ajax({
+            url: "/job/reSchedulejob",
+            type: "POST",
+            data:{"id":id,"jobName":jobName,"jobGroup":jobGroup,"jobCron":jobCron,"jobClassPath":jobClassPath,"jobDescribe":jobDescribe},
+            dataType: "json",
+            success: function(data){
+                if(data==1){
+                    var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                    parent.layer.close(index);  // 关闭layer
+                    parent.layer.msg("修改成功", {icon: 6});
+                    parent.location.reload();
+                }else{
+                    parent.layer.msg("修改失败", {icon: 5});
+                }
+            }
+        });
+    }
+
+</script>
+</html>

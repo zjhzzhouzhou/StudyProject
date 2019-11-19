@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>任务信息</title>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <script th:src="@{/layui/layui.js}"></script>
+</head>
+<body>
+    <div style="text-align: center">
+        <h1>任务列表</h1>
+
+        <br/>
+        <div class="demoTable">
+            搜索任务：
+            <div class="layui-inline">
+                <input class="layui-input" name="name" id="name" autocomplete="off">
+            </div>
+            <button class="layui-btn" data-type="reload">搜索</button>
+            <button class="layui-btn" id="add" onclick="toSave()">新增</button>
+        </div>
+
+        <!--class="layui-hide"-->
+        <table  id="test" lay-filter="test" ></table>
+        <!--操作列-->
+        <script type="text/html" id="barDemo">
+            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+            <a class="layui-btn layui-btn-xs" lay-event="start">运行</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="stop">停止</a>
+        </script>
+
+    </div>
+    <script>
+        function toSave() {
+
+            layer.open({
+                type: 2,
+                title:"新增任务"
+                ,area: ['700px', '500px']
+                ,id: 'toAdd' //防止重复弹出
+                ,content: "/job/toJob"
+                //,btn: ['确认', '取消']
+                ,btnAlign: 'c' //按钮居中
+                ,shade: 0.1 //不显示遮罩
+                ,yes: function(){
+                    layer.closeAll();
+                },
+                success: function(layero, index){
+                    console.log(layero, index);
+                }
+            });
+        }
+        layui.use('table', function(){
+            var table = layui.table;
+            table.render({
+                elem: '#test'
+                ,url:'/job/queryList'
+                ,page: true
+                ,id: 'testReload'
+                ,width:1400
+                ,cols: [
+                    [
+                        {field:'id', width:80, title: '任务编号',align: 'center'},
+                        {field:'jobName', width:200, title: '任务名称（英文）',align: 'center'},
+                        {field:'jobGroup', width:100, title: '任务组别',align: 'center'},
+                        {field:'jobCron', width:120, title: '任务表达式',align: 'center'},
+                        {field:'jobClassPath', width:320, title: '类路径',align: 'center'},
+                        {field:'jobDescribe', width:200, title: '任务描述',align: 'center'},
+                        {field:'jobStatusStr' , minWidth:100, title:'任务状态', templet:'#switchTpl', unresize:true	},
+                        {field:'', title: '操作', align: 'center',width:255,toolbar:"#barDemo"}
+                    ]
+                ]
+            });
+
+            /*重新加载数据表格*/
+            var $ = layui.$, active = {
+                reload: function(){
+                    var id = $('#id');
+                    table.reload('testReload', {
+                        where: {
+                            id: id.val()
+                        }
+                    });
+                }
+            };
+
+            /*绑定搜索点击事件*/
+            $('.demoTable .layui-btn').on('click', function(){
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+            //监听工具条
+            table.on('tool(test)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'detail'){
+                    layer.open({
+                        type: 2,
+                        title:"查看详情"
+                        ,area: ['700px', '500px']
+                        ,id: 'toDetail' //防止重复弹出
+                        ,content: "/job/toDetail?id="+data.id
+                        ,btnAlign: 'c' //按钮居中
+                        ,shade: 0.1 //不显示遮罩
+                        ,yes: function(){
+                            layer.closeAll();
+                        },
+                        success: function(layero, index){
+                            console.log(layero, index);
+                        }
+                    });
+                } else if(obj.event === 'del'){
+                    layer.confirm('确定删除吗？', function(index){
+                        //console.log(data);
+                        $.ajax({
+                            url: "/job/deleteJob",
+                            type: "POST",
+                            data:{"id":data.id},
+                            dataType: "json",
+                            success: function(data){
+                                if(data==1){
+                                    layer.msg("删除成功", {icon: 6});
+                                    /*重新加载数据表格*/
+                                    var id = $('#id');
+                                    table.reload('testReload', {
+                                        where: {
+                                            id: id.val()
+                                        }
+                                    });
+                                }else{
+                                    layer.msg("删除失败", {icon: 5});
+                                }
+                            }
+
+                        });
+                    });
+                }else if(obj.event === 'start'){
+                    layer.confirm('确定运行任务吗？', function(index){
+                        //console.log(data);
+                        $.ajax({
+                            url: "/job/changeState",
+                            type: "GET",
+                            data:{"id":data.id},
+                            dataType: "json",
+                            success: function(data){
+                                if(data==1){
+                                    layer.msg("运行任务成功", {icon: 6});
+                                    /*重新加载数据表格*/
+                                    var id = $('#id');
+                                    table.reload('testReload', {
+                                        where: {
+                                            id: id.val()
+                                        }
+                                    });
+                                }else{
+                                    layer.msg("删除失败", {icon: 5});
+                                }
+                            }
+
+                        });
+                    });
+                }else if(obj.event === 'stop'){
+                    layer.confirm('确定中止任务吗？', function(index){
+                        //console.log(data);
+                        $.ajax({
+                            url: "/job/changeState",
+                            type: "GET",
+                            data:{"id":data.id},
+                            dataType: "json",
+                            success: function(data){
+                                if(data==1){
+                                    layer.msg("中止任务成功", {icon: 6});
+                                    /*重新加载数据表格*/
+                                    var id = $('#id');
+                                    table.reload('testReload', {
+                                        where: {
+                                            id: id.val()
+                                        }
+                                    });
+                                }else{
+                                    layer.msg("中止任务失败", {icon: 5});
+                                }
+                            }
+
+                        });
+                    });
+                } else if(obj.event === 'edit'){
+                    layer.open({
+                        type: 2,
+                        title:"修改任务"
+                        ,area: ['700px', '500px']
+                        ,sid: 'toUpdate' //防止重复弹出
+                        ,content: "/job/toUpdate?id="+data.id
+                        //,btn: ['确认', '取消']
+                        ,btnAlign: 'c' //按钮居中
+                        ,shade: 0.1 //不显示遮罩
+                        ,yes: function(){
+                            layer.closeAll();
+                        },
+                        success: function(layero, index){
+                            console.log(layero, index);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -8,13 +8,32 @@ spring:
      url: jdbc:mysql://192.168.88.188:3301/test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
      username: root
      password: 123456
+     driver-class-name: com.mysql.jdbc.Driver
   profiles:
     active: redis,mq,redisson,com
+  quartz:
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: clusteredScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    jdbc:
+      initialize-schema: never
 
-#mybatis配置
-mybatis-plus:
-  mapper-locations: classpath*:mybatis/mapper/*.xml
-#  config-location: classpath:mybatis-config.xml
 
 
 # 测试mq
@@ -26,3 +45,7 @@ mq.exchange.routekey: zz.haha2
 env: dev
 # 测试userId
 #userId: 123测试
+
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml

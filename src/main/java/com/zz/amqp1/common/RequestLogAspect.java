@@ -154,7 +154,6 @@ public class RequestLogAspect {
                     + "\nRESPONSE : " + strResult;
 
             logger.info(log);
-            logger.warn("TODO  还未保存API日志: {}", "★★★★★★★★★★★★★★★★★★★★★★★★");
         } catch (Exception e) {
             logger.error("***操作请求日志记录失败doAfterReturning()***", e);
         }

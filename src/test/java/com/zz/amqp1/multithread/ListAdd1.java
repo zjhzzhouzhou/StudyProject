@@ -10,7 +10,7 @@ import java.util.List;
  * Time: 17:04
  */
 public class ListAdd1 {
-    private volatile static List list = new ArrayList();
+    private volatile static List<String> list = new ArrayList<String>();
 
     public void add(){
         list.add("我真是是要爆炸了");
