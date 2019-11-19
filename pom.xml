@@ -102,7 +102,6 @@
             <version>1.3.1</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
@@ -170,6 +169,14 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger2.version}</version>
         </dependency>
+
+        <!-- 发送邮件 -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.5.0-b01</version>
+        </dependency>
+
     </dependencies>
 
     <build>
